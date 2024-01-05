@@ -1,6 +1,39 @@
 # front-ecommerce
 
+Online store
+
+## Entities
+
+### Product
+
+- id
+- name
+- description
+- price
+- image
+
+### Category
+
+- name
+- description
+
+### Cart
+
+- products: `[{productId: 1, quantity: 3},{productid: 7, quantity: 5}]`
+
+## Components
+
+### ProductCard
+
+## Pages
+
+- / -> All products
+- /category/5 -> Products of category 5
+- /cart -> View cart
+
 This template should help get you started developing with Vue 3 in Vite.
+
+## Vuetify
 
 ## Recommended IDE Setup
 
