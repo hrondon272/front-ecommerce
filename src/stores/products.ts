@@ -1,17 +1,11 @@
 import { defineStore } from "pinia";
 import type { CartDetail, Product } from '@/model/types';
+import productsData from '../data/products.json';
 
 export const useProductsStore = defineStore('products', {
   state: () => ({
     categoryId: null as number | null,
-    _products: [
-      { id: 1, name: "silla", price: 206, image: "/products/silla.webp", categoryId: 1 },
-      { id: 2, name: "Monitor", price: 100, image: "/products/monitor.jpg", categoryId: 2 },
-      { id: 3, name: "Microfono", price: 300, image: "/products/microfono.jpg", categoryId: 1 },
-      { id: 4, name: "Amplificador", price: 250, image: "/products/parlantes.jpg", categoryId: 1 },
-      { id: 5, name: "Audifonos", price: 15, image: "/products/headphones.jpg", categoryId: 2 },
-      { id: 6, name: "Mouse", price: 25, image: "/products/mouse.jpg", categoryId: 2 },
-    ] as Product[],
+    _products: productsData as Product[],
     details: [] as CartDetail[],
     order: 'price' as string
   }),
