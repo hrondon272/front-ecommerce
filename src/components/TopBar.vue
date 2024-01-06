@@ -1,5 +1,4 @@
 <script lang="ts">
-import { RouterLink } from 'vue-router';
 import { useCartStore } from '@/stores/cart';
 
 export default {
@@ -18,19 +17,19 @@ export default {
             <v-avatar class="me-4 " color="grey-darken-1" size="32"></v-avatar>
 
             <RouterLink to="/" custom v-slot="{ navigate }">
-                <v-btn variant="text" @click="navigate">
+                <v-btn prepend-icon="mdi-home" :active="$route.name === 'home'" variant="text" @click="navigate">
                     Home
                 </v-btn>
             </RouterLink>
             <RouterLink to="/cart" custom v-slot="{ navigate }">
                 <v-badge :content="itemsCount" :model-value="itemsCount > 0" color="orange-lighten-2">
-                    <v-btn variant="text" @click="navigate">
+                    <v-btn prepend-icon="mdi-cart-outline" :active="$route.name === 'cart'" variant="text" @click="navigate">
                         Cart
                     </v-btn>
                 </v-badge>
             </RouterLink>
             <RouterLink to="/about" custom v-slot="{ navigate }">
-                <v-btn variant="text" @click="navigate">
+                <v-btn prepend-icon="mdi-information" :active="$route.name === 'about'" variant="text" @click="navigate">
                     About
                 </v-btn>
             </RouterLink>

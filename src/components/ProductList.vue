@@ -18,20 +18,14 @@ export default {
             ] as Product[],
             details: [] as CartDetail[]
         };
-    },
-    methods: {
-        onProductAdded(productId: number) {
-
-            
-        }
-    },
+    }
 }
 </script>
 
 <template>
     <v-row>
         <v-col v-for="p in products" :key="p.id" cols="4">
-            <ProductCard :product="p" @addProduct="onProductAdded(p.id)"></ProductCard> <!-- Escuchar el evento -->
+            <ProductCard :product="p"></ProductCard> <!-- Escuchar el evento -->
         </v-col>
     </v-row>
     <br>

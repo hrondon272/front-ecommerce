@@ -1,13 +1,24 @@
 <script lang="ts">
-import type { PropType } from 'vue';
-import type { CartDetail } from '../model/types';
 import { useCartStore } from '@/stores/cart';
 
 export default {
+    methods: {
+        decrementQuantity(productId: number) {
+            this.cartStore.decrement(productId);
+        },
+        incrementQuantity(productId: number) {
+            this.cartStore.increment(productId);
+        },
+        deleteProduct(productId: number) {
+            this.cartStore.deleteProduct(productId);
+        }
+    },
     computed: {
-        details(){
-            const cartStore = useCartStore();
-            return cartStore.details;
+        cartStore() {
+            return useCartStore();
+        },
+        details() {
+            return this.cartStore.details;
         }
     }
 }
@@ -15,18 +26,27 @@ export default {
 
 <template>
     <v-card class="mt-2 mb-4">
-        <v-card-text>
-            <v-card-title>
-                Productos agregados al carrito:
-            </v-card-title>
+        <v-card-title>
+            Productos agregados al carrito:
+        </v-card-title>
 
-            <v-list>
+        <v-card-text>
+            <v-list v-if="details.length > 0">
                 <v-list-item v-for="detail in details" :key="detail.id" :value="detail.productId">
                     <v-list-item-title>
-                        Producto - {{ detail.productId }} (Qty: {{ detail.quantity }})
+                        Producto - {{ detail.productId }}
+                        <v-btn class="ml-2" icon="mdi-minus" size="x-small" @click="decrementQuantity(detail.productId)" />
+                        (Cantidad: {{ detail.quantity }})
+                        <v-btn class="ml-2" icon="mdi-plus" size="x-small" @click="incrementQuantity(detail.productId)" />
+                        <v-btn icon="mdi-delete" size="x-small" @click="deleteProduct(detail.productId)" />
                     </v-list-item-title>
                 </v-list-item>
             </v-list>
+            <p v-else>
+                Aún no se han agregado items al carrito de compras, haz clic <RouterLink to="/">aquí</RouterLink>
+                para ver los productos
+                disponibles
+            </p>
         </v-card-text>
     </v-card>
 </template>
