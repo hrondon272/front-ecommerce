@@ -1,12 +1,10 @@
 <script lang="ts">
 import ProductCard from './ProductCard.vue';
-import CartProductList from './CartProductList.vue';
 import type { Product, CartDetail } from '../model/types';
 
 export default {
     components: {
         ProductCard,// Agregamos el componente de manera local
-        CartProductList
     },
     data() {
         return {
@@ -14,6 +12,9 @@ export default {
                 { id: 1, name: "silla", price: 56 },
                 { id: 2, name: "Monitor", price: 100 },
                 { id: 3, name: "Microfono", price: 120 },
+                { id: 4, name: "Microfono 2", price: 130 },
+                { id: 5, name: "Microfono 3", price: 140 },
+                { id: 6, name: "Microfono 4", price: 150 },
             ] as Product[],
             details: [] as CartDetail[]
         };
@@ -21,18 +22,7 @@ export default {
     methods: {
         onProductAdded(productId: number) {
 
-            const detailFound = this.details.find(d => d.productId === productId);
-            console.log(detailFound)
-
-            if (detailFound) {
-                detailFound.quantity += 1;
-            } else {
-                this.details.push({
-                    id: Math.ceil(Math.random() * (10 - 1) + 1),
-                    productId,
-                    quantity: 1
-                })
-            }
+            
         }
     },
 }
@@ -45,5 +35,4 @@ export default {
         </v-col>
     </v-row>
     <br>
-    <CartProductList :details="details" />
 </template>
