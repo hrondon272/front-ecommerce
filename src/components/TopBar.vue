@@ -19,7 +19,7 @@ export default {
             </v-avatar>
 
             <RouterLink to="/" custom v-slot="{ navigate }">
-                <v-btn prepend-icon="mdi-home" :active="$route.name === 'home'" variant="text" @click="navigate">
+                <v-btn prepend-icon="mdi-home" :active="$route.name === 'home' || $route.name === 'category'" variant="text" @click="navigate">
                     Home
                 </v-btn>
             </RouterLink>
