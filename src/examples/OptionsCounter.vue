@@ -10,17 +10,19 @@ export default {
             this.count += 1
         }
     },
-    mounted(){
+    mounted() {
         console.log("Valor iniciar: " + this.count)
     }
 }
 </script>
 
 <template>
-    <div>
-        <h1>Contador: {{ count }}</h1>
-        <button @click="increase">
-            Add counter
-        </button>
-    </div>
+    <p>LLegar a 20 clicks</p>
+    <h1>Contador: {{ count }}</h1>
+    <button @click="increase">
+        Add counter
+    </button>
+
+    <p v-if="count <= 10">Tu puedes!</p>
+    <p v-else>Ya te falta muy poco</p>
 </template>
