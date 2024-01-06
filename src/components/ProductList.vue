@@ -1,6 +1,5 @@
 <script lang="ts">
 import ProductCard from './ProductCard.vue';
-import type { Product, CartDetail } from '../model/types';
 import { useProductsStore } from '@/stores/products';
 import { mapState } from 'pinia';
 

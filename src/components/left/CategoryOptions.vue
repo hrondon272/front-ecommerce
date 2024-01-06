@@ -1,0 +1,35 @@
+<script lang="ts">
+import { useCategoryStore } from "../../stores/categories";
+import { mapState } from "pinia";
+
+export default {
+    computed: {
+        ...mapState(useCategoryStore, ['categories'])
+    },
+    methods: {
+        goToCategory(categoryId: number) {
+            this.$router.push({
+                name: 'category',
+                params: { categoryId }
+            })
+        },
+        clearCategory() {
+            this.$router.push({
+                name: 'home'
+            })
+        }
+    }
+}
+</script>
+
+<template>
+    <v-list-subheader>Categorías</v-list-subheader>
+    <v-list-item link :active="$route.name === 'home'">
+        <v-list-item-title @click="clearCategory()">
+            Todas
+        </v-list-item-title>
+    </v-list-item>
+    <v-list-item v-for="category in categories" :key="category.id" link :title="`${category.name}`"
+        @click="goToCategory(category.id)"
+        :active="$route.name === 'category' && Number($route.params.categoryId) === category.id"></v-list-item>
+</template>
