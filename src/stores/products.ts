@@ -1,13 +1,13 @@
 import { defineStore } from "pinia";
 import type { CartDetail, Product } from '@/model/types';
-import productsData from '../data/products.json';
 
 export const useProductsStore = defineStore('products', {
   state: () => ({
     categoryId: null as number | null,
-    _products: productsData as Product[],
+    _products: [] as Product[],
     details: [] as CartDetail[],
-    order: 'price' as string
+    order: 'price' as string,
+    loading: true
   }),
   getters: {
     products(state) {
@@ -28,7 +28,7 @@ export const useProductsStore = defineStore('products', {
       if (state.order === 'price') {
         return products.sort((a, b) => a.price - b.price);
       }
-      
+
       if (state.order === 'priceDesc') {
         return products.sort((a, b) => b.price - a.price);
       }
@@ -43,6 +43,14 @@ export const useProductsStore = defineStore('products', {
     }
   },
   actions: {
+    fetchProducts() {
+      fetch('/data/products.json')
+        .then(response => response.json())
+        .then((data) => {
+          this._products = data;
+          this.loading = false;
+        })
+    },
     selectCategory(categoryId: number) {
       this.categoryId = categoryId;
     },

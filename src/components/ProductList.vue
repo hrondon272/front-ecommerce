@@ -8,13 +8,16 @@ export default {
         ProductCard,// Agregamos el componente de manera local
     },
     computed: {
-        ...mapState(useProductsStore, ['products'])
+        ...mapState(useProductsStore, ['products', 'loading'])
     }
 }
 </script>
 
 <template>
-    <v-row>
+    <div v-if="loading" class="d-flex justify-center align-center h-100">
+    <v-progress-circular indeterminate :size="50" />        
+    </div>
+    <v-row v-else>
         <v-col v-for="p in products" :key="p.id" cols="4">
             <ProductCard :product="p"></ProductCard> <!-- Escuchar el evento -->
         </v-col>
