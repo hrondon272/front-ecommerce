@@ -36,7 +36,7 @@ export default {
             <v-avatar size="40px">
                 <v-img :src="productImageUrl" />
             </v-avatar>
-            Producto - {{ detail.product.name }}
+            {{ detail.product.name }}
         </td>
         <td>
             <v-btn class="ml-2" icon="mdi-minus" size="x-small" @click="decrementQuantity(detail.product.id)" />
